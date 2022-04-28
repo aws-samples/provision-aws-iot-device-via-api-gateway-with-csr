@@ -1,0 +1,31 @@
+{
+  "Parameters" : {
+      "ThingName" : {
+          "Type" : "String"
+      },
+      "CSR" : {
+          "Type" : "String"    
+      }
+  },
+  "Resources" : {
+      "thing" : {
+          "Type" : "AWS::IoT::Thing",
+          "Properties" : {
+              "ThingName" : {"Ref" : "ThingName"}
+          }
+      },
+      "certificate" : {
+          "Type" : "AWS::IoT::Certificate",
+          "Properties" : {
+              "CertificateSigningRequest": {"Ref" : "CSR"},
+              "Status" : "ACTIVE"      
+          }
+      },
+      "policy" : {
+          "Type" : "AWS::IoT::Policy",
+          "Properties" : {
+              "PolicyDocument" : ""
+          }
+      }
+  }
+}
